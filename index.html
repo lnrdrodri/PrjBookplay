@@ -4,6 +4,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="padrao.css">
     <title>Bookplay</title>
+</head>
+<body width="100%">
+    <!-- DIV DO FILTRO -->
+    <div id="pesquisa">
+        <div class="principal">
+            <h1 class="white">Qual Top 10 deseja visualizar?</h1>
+        </div>
+        <!-- FILTRO DA CATEGORIA -->
+        <div class="principal">
+            <select name="categoria" id="categoria" class="inputCat">
+                <option value="">Escolha a categoria</option>
+                <option value="1">Livros</option>
+                <option value="2">Cursos</option>
+                <option value="3">Videoaulas</option>
+                <option value="5">Banca</option>
+                <option value="6">Audiobooks</option>
+            </select>
+        </div>
+        <div class="principal">
+            <button type="button" class="botao1" onclick="buscaDados()">Listar</button>
+        </div>
+    </div>
+    <!-- DIV GERAL DA TELA QUE LISTA O RETORNO -->
+    <div id="div_lista" class="principal" style="display: none;">
+        <!-- BOTAO QUE FECHA O RETORNO E VOLTA AO FILTRO -->
+        <div class="principal" style="margin-bottom: 1%;">
+            <button type="button" class="botao1" onclick="voltaPesquisa()">Voltar</button>
+        </div>
+        <!-- DIV QUE RECEBE O RETORNO DA REQUISIÇÃO -->
+        <div id="div_conteudo" class="principal"></div>
+    </div>
+    <!-- DIV DO ERRO -->
+    <div class="principal">
+        <div id="erro" class="erro" style="display: none;">
+            <!-- Uma mensagem mais descontraída seria: "Acredito que algum dev derrubou café no servidor...Tente novamente!" -->
+            Estamos enfrentando problemas técnicos!<br>
+            Por favor tente novamente!
+            <div class="principal">
+                <button type="button" class="botao1" style="margin-top:2%;" onclick="erroConfirm()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+    <!-- DIV DO PRELOADER -->
+    <div class="preloader" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+</body>
     <!-- DECLARAÇÕES DO JQUERY -->
     <script
         src="https://code.jquery.com/jquery-3.5.1.js"
@@ -82,50 +129,4 @@
         }
         
     </script>
-</head>
-<body width="100%">
-    <!-- DIV DO FILTRO -->
-    <div id="pesquisa">
-        <div class="principal">
-            <h1 class="white">Qual Top 10 deseja visualizar?</h1>
-        </div>
-        <!-- FILTRO DA CATEGORIA -->
-        <div class="principal">
-            <select name="categoria" id="categoria" class="inputCat">
-                <option value="">Escolha a categoria</option>
-                <option value="1">Livros</option>
-                <option value="2">Cursos</option>
-                <option value="3">Videoaulas</option>
-                <option value="5">Banca</option>
-                <option value="6">Audiobooks</option>
-            </select>
-        </div>
-        <div class="principal">
-            <button type="button" class="botao1" onclick="buscaDados()">Listar</button>
-        </div>
-    </div>
-    <!-- DIV GERAL DA TELA QUE LISTA O RETORNO -->
-    <div id="div_lista" class="principal" style="display: none;">
-        <!-- BOTAO QUE FECHA O RETORNO E VOLTA AO FILTRO -->
-        <div class="principal" style="margin-bottom: 1%;">
-            <button type="button" class="botao1" onclick="voltaPesquisa()">Voltar</button>
-        </div>
-        <!-- DIV QUE RECEBE O RETORNO DA REQUISIÇÃO -->
-        <div id="div_conteudo" class="principal"></div>
-    </div>
-    <!-- DIV DO ERRO -->
-    <div class="principal">
-        <div id="erro" class="erro" style="display: none;">
-            Estamos enfrentando problemas técnicos!<br>
-            Por favor tente novamente!
-            <div class="principal">
-                <button type="button" class="botao1" style="margin-top:2%;" onclick="erroConfirm()">Confirmar</button>
-            </div>
-        </div>
-    </div>
-    <!-- DIV DO PRELOADER -->
-    <div class="preloader" style="display: none;">
-        <div class="spinner"></div>
-    </div>
-</body>
 </html>
