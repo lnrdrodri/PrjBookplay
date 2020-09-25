@@ -1,5 +1,5 @@
 # PrjBookplay
-Olá, não vou falar sobre muito porque essas informações estão todas no currículo, então vamos direito ao projeto.
+Olá, não vou falar sobre muito porque essas informações estão todas no currículo, então vamos direito ao projeto.<br>
 Tentei elaborar o nível 2 do projeto, com algumas exigências do nível 3.
 Criei um único arquivo com divs que uso o Jquery para esconder ou mostrar elas.
 A div de pesquisa é onde está localizado o filtro de categoria, que é um combobox simples com os valores passados no projeto.
