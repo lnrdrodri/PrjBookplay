@@ -1,0 +1,164 @@
+/* DECLARAÇÃO DAS FONTES */
+@font-face {
+    font-family: Gotham;
+    src: url(Fontes/GothamLight.ttf)
+}
+
+@font-face {
+    font-family: GothamBold;
+    src: url(Fontes/GothamBold.ttf)
+}
+
+/* CRIA O DEGRADE NO BODY */
+body{
+    background-image: linear-gradient(to bottom, #48a0dc, #00bdaa);
+    margin: 0px;
+    padding: 0px;
+}
+
+.principal{
+    font-family: GothamBold;
+    padding: none;
+    margin: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.white{
+    color: white;
+}
+
+.botao1{
+    margin-top: 1%;
+    margin-bottom: 1rem;
+    background-color: #fe346e;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 0.6rem;
+}
+
+.erro{
+    border: 1px solid white;
+    border-radius: 0.2rem;
+    padding: 2%;
+    color: white;
+    font-family: GothamBold;
+    padding: none;
+    margin: none;
+    margin-top: 5rem;
+    width: 30rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+/* SEPARADAS ALGUMAS FUNCOES PARA TELAS MAIORES COMO O PC, E TELAS DE CELULARES/TABLETS */
+/* PC */
+@media (min-width: 700px) {
+    .medal{
+        width: 3rem;
+        z-index: 1;
+        position: absolute !important;
+        top: -1.5rem !important;
+        left: -1.5rem !important;
+        transform: rotate(-45deg);
+    }
+
+    .itens{
+        width: 60%;
+        border-radius: 10px;
+        background-color: #f1f3f8;
+        color: black;
+        font-family: GothamBold;
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 2%;
+    }
+
+    .inputCat{
+        background-color: white;
+        width: 20rem;
+        height: 2rem;
+        font-size: 1.5rem;
+        text-align: center;
+        border-radius: 0.6rem;
+        margin-bottom: 1rem;
+    }
+}
+/* CELULAR */
+@media (max-width: 699px) {
+    .medal{
+        width: 2rem;
+        z-index: 1;
+        position: absolute !important;
+        top: -1rem !important;
+        left: -1rem !important;
+        transform: rotate(-45deg);
+    }
+
+    .itens{
+        width: 80%;
+        border-radius: 10px;
+        background-color: #f1f3f8;
+        color: black;
+        font-family: GothamBold;
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 2%;
+    }
+
+    .inputCat{
+        background-color: white;
+        width: 20rem;
+        height: 3rem;
+        font-size: 1.5rem;
+        text-align: center;
+        border-radius: 0.6rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* CSS DO PRELOADER */
+.preloader{
+    width: 100%;
+    z-index: 9999999;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#fff;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* EFEITO DE CARREGANDO DO PRELOADER */
+.spinner {
+    border: 1rem solid  rgba(0, 189, 170, 0.5);
+    border-left-color: #ff0f53;
+    border-bottom-color: #ff0f53;
+    border-radius: 50%;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+/* CRIA A ANIMAÇÃO EFEITO DE CARREGANDO */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,131 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="padrao.css">
+    <title>Bookplay</title>
+    <!-- DECLARAÇÕES DO JQUERY -->
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function buscaDados(){
+            //PEGA O VALOR DA CATEGORIA
+            var categoria = $("#categoria").val();
+            //PEGA O TEXTO DA CATEGORIA
+            var categoriaText = $("#categoria option:selected").html();
+            //RECEBE TODO O CONTEUDO DE TEXTO PARA A DIV DE CADA ITEM DO RETORNO
+            var cont = "";
+            //RECEBE QUAL IMAGEM DEVE USAR DE ACORDO COM O VALOR DO I
+            var pos = "";
+            //NÃO DEIXA LISTAR SEM SELECIONAR A CATEGORIA
+            if(categoria == ''){
+                alert("Você esqueceu de escolher a categoria!");
+                return;
+            }
+            //ESCONDE OS FILTROS, LIMPA A DIV DE CONTEUDO E MOSTRA O PRELOADER
+            $("#pesquisa").hide();
+            $("#div_conteudo").html('');
+            $(".preloader").show();
+            //AJAX QUE BUSCA AS INFORMACOES NA API
+            $.ajax({
+                    url: "https://bmain.bookplay.com.br/parceiros/6BB6F620/recrutamento/top10/acessos/" + categoria,
+                    success: function(result){
+                        //ESCREVE O TITULO DO RETORNO
+                        $("#div_conteudo").append("<div class='white principal'><h1>Top 10 " + categoriaText + "</h1></div>");
+                        //PROCESSA O RETORNO
+                        for(i = 0; i < result.data.length; i++){
+                            //LIMPA AS VARIAVEIS PARA CADA LINHA DO RETORNO
+                            cont = "";
+                            pos = '';
+                            //VERIFICA QUAL IMAGEM DE COROA USAR
+                            if(i == 0){
+                                pos = "<img class='medal' src='img/coroa.png'>";
+                            }else if(i == 1){
+                                pos = "<img class='medal' src='img/coroa2.png'>";
+                            }else if(i == 2){
+                                pos = "<img class='medal' src='img/coroa3.png'>";
+                            }
+                            //GUARDA EM CONT AS INFORMACOES DO RETORNO
+                            cont = "<div class='itens' style='position: relative !important;'>" + pos + (i + 1) + ". " + result.data[i].Nome + "</div>";
+                            //AGREGA NO FINAL DA DIV DE CONTEUDO
+                            $("#div_conteudo").append(cont);
+                            // console.log(result.data[i].Nome);    //APENAS PARA CONFERIR O RETORNO NO CONSOLE
+                        }
+                        //EXIBE A LISTAGEM DEPOIS DE PRONTA E ESCONDE O PRELOADER
+                        $("#div_lista").show();
+                        $(".preloader").hide();
+                        // console.log(result);
+                    },
+                    error: function(result){
+                        //CASO A REQUISIÇÃO FALHE ESCONDE O PRELOADER E MOSTRA A DIV DE ERRO
+                        $("#erro").show();
+                        $(".preloader").hide();
+                    }                    
+                });
+        }
+        // FUNCAO PARA VOLTAR DA PESQUISA PARA O FILTRO
+        function voltaPesquisa(){
+            $("#div_lista").hide();
+            $("#div_conteudo").html('');
+            $("#pesquisa").show();
+        }
+        // FUNCAO APENAS PARA TRATAR O ERRO DO AJAX ESCONDENDO A DIV DO ERRO E VOLTANDO AO FILTRO
+        function erroConfirm(){
+            $("#erro").hide();
+            $("#pesquisa").show();
+        }
+        
+    </script>
+</head>
+<body width="100%">
+    <!-- DIV DO FILTRO -->
+    <div id="pesquisa">
+        <div class="principal">
+            <h1 class="white">Qual Top 10 deseja visualizar?</h1>
+        </div>
+        <!-- FILTRO DA CATEGORIA -->
+        <div class="principal">
+            <select name="categoria" id="categoria" class="inputCat">
+                <option value="">Escolha a categoria</option>
+                <option value="1">Livros</option>
+                <option value="2">Cursos</option>
+                <option value="3">Videoaulas</option>
+                <option value="5">Banca</option>
+                <option value="6">Audiobooks</option>
+            </select>
+        </div>
+        <div class="principal">
+            <button type="button" class="botao1" onclick="buscaDados()">Listar</button>
+        </div>
+    </div>
+    <!-- DIV GERAL DA TELA QUE LISTA O RETORNO -->
+    <div id="div_lista" class="principal" style="display: none;">
+        <!-- BOTAO QUE FECHA O RETORNO E VOLTA AO FILTRO -->
+        <div class="principal" style="margin-bottom: 1%;">
+            <button type="button" class="botao1" onclick="voltaPesquisa()">Voltar</button>
+        </div>
+        <!-- DIV QUE RECEBE O RETORNO DA REQUISIÇÃO -->
+        <div id="div_conteudo" class="principal"></div>
+    </div>
+    <!-- DIV DO ERRO -->
+    <div class="principal">
+        <div id="erro" class="erro" style="display: none;">
+            Estamos enfrentando problemas técnicos!<br>
+            Por favor tente novamente!
+            <div class="principal">
+                <button type="button" class="botao1" style="margin-top:2%;" onclick="erroConfirm()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+    <!-- DIV DO PRELOADER -->
+    <div class="preloader" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+</body>
+</html>
