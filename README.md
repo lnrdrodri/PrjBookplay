@@ -22,6 +22,8 @@ Caso a requisição tenha êxito, um for lê os dados retornados da API e confor
 Os três primeiros tem suas coroas de ouro, prata e bronze.
 <br>
 Na div com o retorno da requisição também está o botão de voltar, que volta para a parte de pesquisa.
+<br>
+Sobre o projeto é basicamente isso.
 <br><br>
 Tenho conhecimento sobre SQL e MYSQL, já trabalho manipulando DB há 2 anos e meio, então criei um arquivo com script mysql que seria teoricamente para o nivel 4, controle de login, e uma trigger para impedir que criem login duplicado.
 <br><br>
